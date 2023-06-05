@@ -14,5 +14,6 @@ public class player_actions : MonoBehaviour
     void Update()
     {
         player1.mooving(player);
+        player1.rotation(player);
     }
 }
