@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+
 
 namespace subjects.cs
 {
     class Player
     {
+        public int bulets = 10;
         public int HP = 100;
         public string Name = "";
         public float speed = 5f;
@@ -85,5 +88,35 @@ namespace subjects.cs
                 tr.rotation = Quaternion.Slerp(tr.rotation, rotation, Time.deltaTime * smooth);
             }
         }
+        public void shut(GameObject bulet, GameObject player)
+        {
+            if (Input.GetMouseButtonDown(0) && bulets > 0)
+            {
+                Transform tr = player.GetComponent<Transform>();
+                Vector3 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                Debug.Log(mouse.x);
+                Debug.Log(mouse.y);
+                Debug.Log(tr.position.x);
+                Debug.Log(tr.position.y);
+                var direction = tr.position - mouse;
+                if (direction.x >= 0)
+                {
+                    var angle = Mathf.Atan(direction.y / direction.x) * Mathf.Rad2Deg;
+                    InstantiateExample.Instantiate(bulet, new Vector3(tr.position.x, tr.position.y, 0), Quaternion.Euler(0, 0, angle + 90));
+                }
+                else
+                {
+                    var angle = Mathf.Atan(direction.y / direction.x) * Mathf.Rad2Deg;
+                    InstantiateExample.Instantiate(bulet, new Vector3(tr.position.x, tr.position.y, 0), Quaternion.Euler(0, 0, angle - 90));
+                }
+                
+                bulets -= 1;
+
+            }
+        }
     }
 }
+public class InstantiateExample : MonoBehaviour
+{
+}
+

@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using subjects.cs;
+using objects;
 
 public class player_actions : MonoBehaviour
 {
     public GameObject player;
+    public GameObject bulet;
     Player player1 = new Player();
     void Start()
     {
@@ -15,5 +17,6 @@ public class player_actions : MonoBehaviour
     {
         player1.mooving(player);
         player1.rotation(player);
+        player1.shut(bulet, player);
     }
 }
