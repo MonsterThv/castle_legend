@@ -94,10 +94,7 @@ namespace subjects.cs
             {
                 Transform tr = player.GetComponent<Transform>();
                 Vector3 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                Debug.Log(mouse.x);
-                Debug.Log(mouse.y);
-                Debug.Log(tr.position.x);
-                Debug.Log(tr.position.y);
+
                 var direction = tr.position - mouse;
                 if (direction.x >= 0)
                 {
