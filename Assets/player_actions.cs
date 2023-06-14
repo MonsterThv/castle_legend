@@ -8,6 +8,7 @@ public class player_actions : MonoBehaviour
 {
     public GameObject player;
     public GameObject bulet;
+    public GameObject camera;
     Player player1 = new Player();
     void Start()
     {
@@ -15,7 +16,7 @@ public class player_actions : MonoBehaviour
 
     void Update()
     {
-        player1.mooving(player);
+        player1.mooving(player, camera);
         player1.rotation(player);
         player1.shut(bulet, player);
     }

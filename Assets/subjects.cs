@@ -15,9 +15,10 @@ namespace subjects.cs
         Vector3 mooving_forward = new Vector3(0, 1, 0);
         Vector3 mooving_side = new Vector3(1, 0, 0);
 
-        public void mooving(GameObject player)
+        public void mooving(GameObject player, GameObject camera)
         {
             Transform tr = player.GetComponent<Transform>();
+            Transform tr_cam = camera.GetComponent<Transform>();
             if (Input.GetKey(KeyCode.W))
             {
                 tr.position += mooving_forward * speed * Time.deltaTime;
@@ -34,6 +35,7 @@ namespace subjects.cs
             {
                 tr.position += mooving_side * -speed * Time.deltaTime;
             }
+            tr_cam.position = tr.position - new Vector3(0,0,20);
         }
         public void rotation(GameObject player)
         {
