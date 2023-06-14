@@ -97,38 +97,36 @@ namespace subjects.cs
             if (Input.GetKeyDown(KeyCode.F))
             {
                 Vector3 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                float build_x = mouse.x;
-                float build_y = mouse.y;
-                Debug.Log(build_x);
-                Debug.Log(build_y);
-                float buil_x = 0f;
-                float buil_y = 0f;
-                if ( build_x < 0f)
+                float mouse_x = mouse.x;
+                float mouse_y = mouse.y;
+                float build_x = 0f;
+                float build_y = 0f;
+                if (mouse_x < 0f)
                 {
-                    build_x -= 0.5f;
-                    string temp_x = build_x.ToString();
-                    buil_x = float.Parse(sort_str(temp_x) + "," + "0");
+                    mouse_x -= 0.5f;
+                    string temp_x = mouse_x.ToString();
+                    build_x = float.Parse(sort_str(temp_x) + "," + "0");
                 }
                 else
                 {
-                    build_x += 0.5f;
-                    string temp_x = build_x.ToString();
-                    buil_x = float.Parse(sort_str(temp_x) + "," + "0");
+                    mouse_x += 0.5f;
+                    string temp_x = mouse_x.ToString();
+                    build_x = float.Parse(sort_str(temp_x) + "," + "0");
                 }
-                if (build_y < 0f)
+                if (mouse_y < 0f)
                 {
-                    build_y -= 0.5f;
-                    string temp_y = build_y.ToString();
-                    buil_y = float.Parse(sort_str(temp_y) + "," + "0");
+                    mouse_y -= 0.5f;
+                    string temp_y = mouse_y.ToString();
+                    build_y = float.Parse(sort_str(temp_y) + "," + "0");
 
                 }
                 else
                 {
-                    build_y += 0.5f;
-                    string temp_y = build_y.ToString();
-                    buil_y = float.Parse(sort_str(temp_y) + "," + "0");
+                    mouse_y += 0.5f;
+                    string temp_y = mouse_y.ToString();
+                    build_y = float.Parse(sort_str(temp_y) + "," + "0");
                 }
-                InstantiateExample.Instantiate(build, new Vector3(buil_x, buil_y, 0), Quaternion.identity);
+                InstantiateExample.Instantiate(build, new Vector3(build_x, build_y, 0), Quaternion.identity);
             }
         }
     }
