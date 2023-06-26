@@ -326,8 +326,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd71a95b19b5fbc4eabe507dd2467ff9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  build: {fileID: 2246203923805024126, guid: a7f0aa8e8d9ba7a43918a718ac4a7263, type: 3}
-  player: {fileID: 1508403507}
+  player: {fileID: 0}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -566,7 +565,9 @@ MonoBehaviour:
   player: {fileID: 1508403507}
   bullet: {fileID: 4358638171251620180, guid: 97f434e0da7c8414bb5d48cb6b22577c, type: 3}
   camera: {fileID: 519420028}
-  build: {fileID: 2246203923805024126, guid: a7f0aa8e8d9ba7a43918a718ac4a7263, type: 3}
+  build1: {fileID: 2246203923805024126, guid: a7f0aa8e8d9ba7a43918a718ac4a7263, type: 3}
+  build2: {fileID: 3103062994941230953, guid: 94f3adda1f37c214ab9d44f02ea15018, type: 3}
+  build3: {fileID: 8096551958458551662, guid: 13944718e0e292c4394443f41629a58a, type: 3}
 --- !u!1 &2128977917
 GameObject:
   m_ObjectHideFlags: 0

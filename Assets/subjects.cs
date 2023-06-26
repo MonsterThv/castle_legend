@@ -9,11 +9,13 @@ namespace subjects.cs
 
     public class Player : MonoBehaviour
     {
-        public int bullets = 10;
+        public int bullets = 30;
         public bool building_mod = false;
+        public bool was_build_chousen = false;
         public int HP = 100;
         public string Name = "";
         public float speed = 5f;
+        public bool moov_build = false;
         public GameObject[] arr_of_buildings = new GameObject[0];
         Vector3 mooving_forward = new Vector3(0, 1, 0);
         Vector3 mooving_side = new Vector3(1, 0, 0);
@@ -134,26 +136,55 @@ namespace subjects.cs
             GameObject fl_build = null;
             if (Input.GetKeyDown(KeyCode.F))
             {
+                building_mod = true;
+            }
+            if(was_build_chousen)
+            {
                 fl_build = Instantiate(build, get_x_and_y_for_bialding(), Quaternion.identity) as GameObject;
                 add_in_arr(fl_build);
-                building_mod = true;
+                moov_build = true;
+                was_build_chousen = false;
             }
         }
         public void moov_building()
         {
-            if (building_mod == true)
+            if (moov_build && arr_of_buildings.Length != 0)
             {
                 arr_of_buildings[arr_of_buildings.Length - 1].transform.position = get_x_and_y_for_bialding();
             }
             if(building_mod && Input.GetMouseButtonDown(0))
             {
                 building_mod = false;
+                moov_build = false;
             }
         }
         public void add_in_arr(GameObject build)
         {
             Array.Resize(ref arr_of_buildings, arr_of_buildings.Length + 1);
             arr_of_buildings[arr_of_buildings.Length - 1] = build;
+        }
+        public GameObject chose_build(GameObject[] buildings)
+        {
+            if(building_mod && !was_build_chousen)
+            {
+                
+                if (Input.GetKeyDown(KeyCode.Keypad1))
+                {
+                    was_build_chousen = true;
+                    return buildings[0];
+                }
+                if (Input.GetKeyDown(KeyCode.Keypad2))
+                {
+                    was_build_chousen = true;
+                    return buildings[1];
+                }
+                if (Input.GetKeyDown(KeyCode.Keypad3))
+                {
+                    was_build_chousen = true;
+                    return buildings[2];
+                }
+            }
+            return null;
         }
     }
 }
