@@ -131,34 +131,6 @@ namespace subjects.cs
             return new Vector3(build_x, build_y, 0);
         }
 
-        private Vector3 get_x_and_y_for_bialding_1()
-        {
-            Vector3 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            float mouse_x = mouse.x;
-            float mouse_y = mouse.y;
-            float build_x = 0f;
-            float build_y = 0f;
-            double temp_x = Math.Round(mouse_x);
-            double temp_y = Math.Round(mouse_y);
-            if(mouse_x > temp_x)
-            {
-                build_x = Convert.ToSingle(temp_x) + 0.5f;
-            }
-            else
-            {
-                build_x = Convert.ToSingle(temp_x) - 0.5f;
-            }
-            if (mouse_y > temp_y)
-            {
-                build_y = Convert.ToSingle(temp_y) + 0.5f;
-            }
-            else
-            {
-                build_y = Convert.ToSingle(temp_y) - 0.5f;
-            }
-            return new Vector3(build_x, build_y, 0);
-        }
-
         public void create_building(GameObject build)
         {
             GameObject fl_build = null;
@@ -178,15 +150,7 @@ namespace subjects.cs
         {
             if (moov_build && arr_of_buildings.Length != 0)
             {
-                GameObject fl_build = arr_of_buildings[arr_of_buildings.Length - 1];
-                if (fl_build.transform.localScale.x % 2 == 0)
-                {
-                    fl_build.transform.position = get_x_and_y_for_bialding();
-                }
-                else
-                {
-                    fl_build.transform.position = get_x_and_y_for_bialding_1();
-                }
+                arr_of_buildings[arr_of_buildings.Length - 1].transform.position = get_x_and_y_for_bialding();
             }
             if(building_mod && Input.GetMouseButtonDown(0))
             {
