@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UI;
 
 
 namespace subjects.cs
@@ -16,6 +17,7 @@ namespace subjects.cs
         public string Name = "";
         public float speed = 5f;
         public bool moov_build = false;
+        public bool build_menu_is_active = false;
         public GameObject[] arr_of_buildings = new GameObject[0];
         Vector3 mooving_forward = new Vector3(0, 1, 0);
         Vector3 mooving_side = new Vector3(1, 0, 0);
@@ -174,10 +176,11 @@ namespace subjects.cs
                 was_build_chousen = false;
             }
         }
-        public void moov_building()
+        public void moov_building(GameObject build_menu)
         {
             if (moov_build && arr_of_buildings.Length != 0)
             {
+                build_menu.SetActive(false);
                 GameObject fl_build = arr_of_buildings[arr_of_buildings.Length - 1];
                 if (fl_build.transform.localScale.x % 2 == 0)
                 {
@@ -188,7 +191,7 @@ namespace subjects.cs
                     fl_build.transform.position = get_x_and_y_for_bialding_1();
                 }
             }
-            if(building_mod && Input.GetMouseButtonDown(0))
+            if(building_mod && Input.GetMouseButtonDown(0) && build_menu_is_active)
             {
                 building_mod = false;
                 moov_build = false;
@@ -199,28 +202,39 @@ namespace subjects.cs
             Array.Resize(ref arr_of_buildings, arr_of_buildings.Length + 1);
             arr_of_buildings[arr_of_buildings.Length - 1] = build;
         }
-        public GameObject chose_build(GameObject[] buildings)
+        public GameObject chose_build(GameObject[] buildings, Button[] buttons)
         {
             if(building_mod && !was_build_chousen)
             {
-                
-                if (Input.GetKeyDown(KeyCode.Keypad1))
+                Vector3 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                if (buttons[0].is_clicked(mouse))
                 {
                     was_build_chousen = true;
+                    build_menu_is_active = false;
                     return buildings[0];
                 }
-                if (Input.GetKeyDown(KeyCode.Keypad2))
+                if (buttons[1].is_clicked(mouse))
                 {
                     was_build_chousen = true;
+                    build_menu_is_active = false;
                     return buildings[1];
                 }
-                if (Input.GetKeyDown(KeyCode.Keypad3))
+                if (buttons[2].is_clicked(mouse))
                 {
                     was_build_chousen = true;
+                    build_menu_is_active = false;
                     return buildings[2];
                 }
             }
             return null;
+        }
+        public void show_build_menu(GameObject build_menu)
+        {
+            if (building_mod && !was_build_chousen)
+            {
+                build_menu.SetActive(true);
+                build_menu_is_active = true;
+            }
         }
     }
 }
